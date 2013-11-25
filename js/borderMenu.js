@@ -68,7 +68,7 @@ function borderMenu(menuID){
 
 				classie.remove( _this.menu, 'bt-menu-close' );
 				classie.add( _this.menu, 'bt-menu-open' );
-				this.overlay.addEventListener( _this.eventtype, _this.closeClickFn );
+				_this.overlay.addEventListener( _this.eventtype, _this.closeClickFn );
 			});
 		}
 
