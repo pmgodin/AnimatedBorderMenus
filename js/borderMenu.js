@@ -33,20 +33,21 @@ function borderMenu(menuID){
 		this.triggerPlay = document.querySelector( 'a.bt-menu-trigger-out' );
 		// event type (if mobile use touch events)
 		this.eventtype = this.mobilecheck() ? 'touchstart' : 'click';
+		
+		var _this = this;
 		this.resetMenu = function() {
-			classie.remove( this.menu, 'bt-menu-open' );
-			classie.add( this.menu, 'bt-menu-close' );
+			classie.remove( _this.menu, 'bt-menu-open' );
+			classie.add( _this.menu, 'bt-menu-close' );
 		};
 		this.closeClickFn = function( ev ) {
-			this.resetMenu();
-			this.overlay.removeEventListener( this.eventtype, this.closeClickFn );
+			_this.resetMenu();
+			_this.overlay.removeEventListener( _this.eventtype, _this.closeClickFn );
 		};
 
 		this.overlay = document.createElement('div');
 		this.overlay.className = 'bt-overlay';
 		this.menu.appendChild( this.overlay );
 
-		var _this = this;
 		this.trigger.addEventListener( this.eventtype, function( ev ) {
 			ev.stopPropagation();
 			ev.preventDefault();
