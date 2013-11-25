@@ -46,17 +46,18 @@ function borderMenu(menuID){
 		this.overlay.className = 'bt-overlay';
 		this.menu.appendChild( this.overlay );
 
+		var _this = this;
 		this.trigger.addEventListener( this.eventtype, function( ev ) {
 			ev.stopPropagation();
 			ev.preventDefault();
 			
-			if( classie.has( this.menu, 'bt-menu-open' ) ) {
-				this.resetMenu();
+			if( classie.has( _this.menu, 'bt-menu-open' ) ) {
+				_this.resetMenu();
 			}
 			else {
-				classie.remove( this.menu, 'bt-menu-close' );
-				classie.add( this.menu, 'bt-menu-open' );
-				this.overlay.addEventListener( this.eventtype, this.closeClickFn );
+				classie.remove( _this.menu, 'bt-menu-close' );
+				classie.add( _this.menu, 'bt-menu-open' );
+				_this.overlay.addEventListener( _this.eventtype, _this.closeClickFn );
 			}
 		});
 
@@ -65,9 +66,9 @@ function borderMenu(menuID){
 				ev.stopPropagation();
 				ev.preventDefault();
 
-				classie.remove( this.menu, 'bt-menu-close' );
-				classie.add( this.menu, 'bt-menu-open' );
-				this.overlay.addEventListener( this.eventtype, this.closeClickFn );
+				classie.remove( _this.menu, 'bt-menu-close' );
+				classie.add( _this.menu, 'bt-menu-open' );
+				this.overlay.addEventListener( _this.eventtype, _this.closeClickFn );
 			});
 		}
 
