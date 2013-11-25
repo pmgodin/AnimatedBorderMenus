@@ -27,8 +27,6 @@ function borderMenu(menuID){
 	}
 
 	this.init = function() {
-		var _this = this;
-
 		this.menu = document.getElementById( this.menuID );
 		this.trigger = this.menu.querySelector( 'a.bt-menu-trigger' );
 		// triggerPlay only for demo 6
@@ -36,40 +34,40 @@ function borderMenu(menuID){
 		// event type (if mobile use touch events)
 		this.eventtype = this.mobilecheck() ? 'touchstart' : 'click';
 		this.resetMenu = function() {
-			classie.remove( _this.menu, 'bt-menu-open' );
-			classie.add( _this.menu, 'bt-menu-close' );
+			classie.remove( this.menu, 'bt-menu-open' );
+			classie.add( this.menu, 'bt-menu-close' );
 		};
 		this.closeClickFn = function( ev ) {
-			_this.resetMenu();
-			_this.overlay.removeEventListener( _this.eventtype, _this.closeClickFn );
+			this.resetMenu();
+			this.overlay.removeEventListener( this.eventtype, this.closeClickFn );
 		};
 
 		this.overlay = document.createElement('div');
 		this.overlay.className = 'bt-overlay';
-		this.menu.appendChild( _this.overlay );
+		this.menu.appendChild( this.overlay );
 
-		this.trigger.addEventListener( _this.eventtype, function( ev ) {
+		this.trigger.addEventListener( this.eventtype, function( ev ) {
 			ev.stopPropagation();
 			ev.preventDefault();
 			
-			if( classie.has( _this.menu, 'bt-menu-open' ) ) {
-				_this.resetMenu();
+			if( classie.has( this.menu, 'bt-menu-open' ) ) {
+				this.resetMenu();
 			}
 			else {
-				classie.remove( _this.menu, 'bt-menu-close' );
-				classie.add( _this.menu, 'bt-menu-open' );
-				_this.overlay.addEventListener( _this.eventtype, closeClickFn );
+				classie.remove( this.menu, 'bt-menu-close' );
+				classie.add( this.menu, 'bt-menu-open' );
+				this.overlay.addEventListener( this.eventtype, this.closeClickFn );
 			}
 		});
 
 		if( this.triggerPlay ) {
-			this.triggerPlay.addEventListener( _this.eventtype, function( ev ) {
+			this.triggerPlay.addEventListener( this.eventtype, function( ev ) {
 				ev.stopPropagation();
 				ev.preventDefault();
 
-				classie.remove( _this.menu, 'bt-menu-close' );
-				classie.add( _this.menu, 'bt-menu-open' );
-				_this.overlay.addEventListener( _this.eventtype, closeClickFn );
+				classie.remove( this.menu, 'bt-menu-close' );
+				classie.add( this.menu, 'bt-menu-open' );
+				this.overlay.addEventListener( this.eventtype, this.closeClickFn );
 			});
 		}
 
